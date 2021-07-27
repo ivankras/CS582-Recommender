@@ -1,2 +1,8 @@
-# CS582-Recommender
-Project 1 (Recommender System) for CS582 - Machine Learning @ MIU 
+# CS582 - Machine Learning
+## Project 1: Movie Recommender System
+#### MIU - August 2nd, 2021
+----
+- Muzammil Husnain
+- Iván Krasowski Bissio
+- Baraa Mousa Noufal
+- Umair Saeed

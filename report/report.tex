@@ -1,0 +1,54 @@
+\documentclass[titlepage, 11pt]{article}
+\input{preamble.tex}
+
+\title{
+	\textbf{Project 1: Movie Recommender System} \\
+	Machine learning (CS582), MIU \thanks{Instructor: Anthony Sander}
+}
+
+\author{
+    Baraa Mousa Noufal \and Ivan Krasowski Bissio
+        \and Muzammil Husnain \and Umair Saeed
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+	\addcontentsline{toc}{section}{Abstract}
+	\input{abstract.tex}
+\end{abstract}
+
+\section{About the Dataset}
+% The chosen dataset collects information about \href{https://www.kaggle.com/binaryjoker/airline-passenger-satisfaction/download}{Airline Passenger Satisfaction}.
+% We opted for this dataset because it had a lot of entries (almost 130000), many columns (including 4 categorical) and it was oriented to a binary classification problem ('satisfied' vs. 'neutral or dissatisfied').
+
+\subsection{EDA: Exploratory Data Analysis}
+\input{sections/dataset/eda.tex}
+
+\subsection{Data Preparation}
+\input{sections/dataset/data_prep.tex}
+
+\section{Trending Now}
+\input{sections/ml/1_trending.tex}
+
+\section{Because you watched}
+\input{sections/ml/2_because_you_watched.tex}
+
+\section{Because of you}
+\input{sections/ml/3_because_of_you.tex}
+
+\section{In Production}
+\subsection{RESTful API}
+\input{sections/production/api.tex}
+\subsection{Docker}
+\input{sections/production/docker.tex}
+\subsection{UI}
+\input{sections/production/ui.tex}
+
+\section{Conclusion}
+\input{conclusion.tex}
+
+\end{document}
