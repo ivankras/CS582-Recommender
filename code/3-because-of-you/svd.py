@@ -1,7 +1,12 @@
 import numpy as np
 import pandas as pd
 from concurrent import futures
-from surprise import Reader, Dataset, SVD
+from joblib import (load, dump)
+from surprise import (
+    Reader,
+    Dataset,
+    SVD
+)
 # from surprise.model_selection import cross_validate
 
 from eda import (
@@ -10,13 +15,15 @@ from eda import (
     get_ratings
 )
 
-def generate_model_svd():
+svd_model_file = 'models/svd'
+svd_small_model_file = 'models/svd_small'
+
+def generate_model_svd(small=True):
     # ---------
     # Load data
     # ---------
     reader = Reader()
-    ratings = get_ratings_small()
-    # ratings = get_ratings()
+    ratings = get_ratings_small() if small else get_ratings()
     data = Dataset.load_from_df(df=ratings[['userId', 'movieId', 'rating']], reader=reader)
     
     # ---------
@@ -27,8 +34,8 @@ def generate_model_svd():
     # cross_validate(algo=svd, data=data, measures=['RMSE', 'MAE'], cv=5, n_jobs=-1)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    
-    # TODO: serialize this model (especially if trained for all ratings, instead of ratings_small)
+
+    dump(svd, svd_small_model_file if small else svd_model_file, 9)
 
     return svd
 
@@ -36,8 +43,9 @@ def predict_score_svd(user_id, movie_id, svd=None):
     svd = svd if svd is not None else generate_model_svd()
     return svd.predict(user_id, movie_id)
 
-def get_all_predictions_svd(user_id):
-    svd = generate_model_svd()
+def get_all_predictions_svd(user_id, small=True):
+    # svd = generate_model_svd()
+    svd = load(svd_small_model_file if small else svd_model_file)
 
     movies_ids = get_movies_ids()
 
