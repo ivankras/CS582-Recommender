@@ -79,4 +79,4 @@ def clean_data(x):
 
 
 def create_soup(x):
-    return ' '.join(x['keywords']) + ' ' + ' '.join(x['cast']) + ' '.join(x['director']) + ' ' + ' '.join(x['genres']) #+  ' '.join(x['overview'])
+    return ' '.join(x['keywords']) + ' ' + ' '.join(x['cast']) + ' '.join(x['director']) + ' ' + ' '.join(x['genres']) #+ ' '.join(x['overview'])
