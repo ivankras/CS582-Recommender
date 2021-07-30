@@ -29,3 +29,6 @@ report.pdf
 # Jupyter Notebooks
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+
+# Virtualenv
+venv/
