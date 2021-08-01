@@ -31,7 +31,7 @@ def generate_model_svd(small=True):
     # ---------
     svd = SVD()
     # Evaluate the model for the data
-    # cross_validate(algo=svd, data=data, measures=['RMSE', 'MAE'], cv=5, n_jobs=-1)
+    # cross_validate(algo=svd, data=data, measures=['RMSE', 'MAE'], cv=5, n_jobs=-1, verbose=True)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
 
