@@ -36,3 +36,6 @@ venv/
 __pycache__/
 
 svd
+svd_small
+#dataset
+input/
