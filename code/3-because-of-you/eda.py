@@ -8,8 +8,10 @@ def get_ratings_small():
     ratings = pd.read_csv(ratings_small_input_file)
     return ratings
 
-def get_ratings():
+def get_ratings(size=-1):
     ratings = pd.read_csv(ratings_input_file)
+    if size > 0:
+        ratings = ratings[:size]
     return ratings
 
 def _drop_odd_ids(movies):

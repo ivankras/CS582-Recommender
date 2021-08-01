@@ -56,7 +56,7 @@ def _prepare_data_nn(small=True):
     X = ratings[['user', 'movie']].values
     y = ratings['rating'].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=12)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1 if small else 0.25, random_state=12)
 
     X_train_array = [X_train[:, 0], X_train[:, 1]]
     X_test_array = [X_test[:, 0], X_test[:, 1]]
@@ -122,7 +122,7 @@ def _get_predictor_nn(train=False, small=True):
             max_rating=max_rating
         )
 
-        training_history, trained_model = _train_nn(model, data)
+        training_history, trained_model = _train_nn(model, data, small)
     else:
         nn_load_file = nn_small_model_dir if small else nn_model_dir
         trained_model = load_model(nn_load_file)
