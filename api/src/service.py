@@ -9,27 +9,26 @@ from surprise import Dataset
 from surprise import Reader, Dataset, SVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from joblib import (load, dump)
 
 from util import *
 from code import *
 
-reader = Reader(line_format="user item rating", sep=",", skip_lines=1)
-movie_df = os.path.join(os.path.dirname(__file__), ".", "input", "movies_metadata.csv"))
-movie_credits_df = #pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "input", "tmdb_5000_credits.csv"))
+movie_df = pd.read_csv(os.path.join(os.path.dirname(__file__), ".", "input", "movies_metadata.csv"))
+movie_credits_df = pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "input", "credits.csv"))
 user_ratings_ds = get_ratings_small()
 
-# globals for the sake of in-memory caching
 VECTORIZER = None
 VECTORIZED_MATRIX = None
 COSINE_SIMILARITY_MATRIX = np.array([])
 MOVIE_ID_INDICES = None
-SVD_MODEL = None
+SVD_MODEL = load('../code/3-because-of-you/models/svd')
 
 
 
 def get_trending_movies():
     """ 
-    Calculate IMDB formula ratings and return the top ten rated
+    Get popular movies by demographic
     """
     # Clean columns for result
     movies = format_data_objects(movie_df.copy())
@@ -45,8 +44,6 @@ def get_trending_movies():
     top_ten_similar = top_ten_similar.apply(get_movie_poster_and_trailer, axis=1)
 
     return append_imdb_id_to_df(top_ten_similar).to_json(orient='records')
-    # return top_ten_similar.to_json(orient='records')
-
 
 def get_top_10_similar(movie_id, use_overview_for_similarity=False): 
     """
