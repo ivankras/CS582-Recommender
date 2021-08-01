@@ -34,3 +34,5 @@ report.pdf
 venv/
 
 __pycache__/
+
+svd
