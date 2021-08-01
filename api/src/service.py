@@ -11,12 +11,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from util import *
+from code import *
 
 reader = Reader(line_format="user item rating", sep=",", skip_lines=1)
-movie_df = pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "input", "tmdb_5000_movies.csv"))
-movie_credits_df = pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "input", "tmdb_5000_credits.csv"))
-user_ratings_ds = Dataset.load_from_file(os.path.join(os.path.dirname(__file__), "..", "input", "ratings_small.csv"),
-                                         reader=reader)
+movie_df = os.path.join(os.path.dirname(__file__), ".", "input", "movies_metadata.csv"))
+movie_credits_df = #pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "input", "tmdb_5000_credits.csv"))
+user_ratings_ds = get_ratings_small()
 
 # globals for the sake of in-memory caching
 VECTORIZER = None
