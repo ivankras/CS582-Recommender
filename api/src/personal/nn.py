@@ -142,10 +142,8 @@ def get_top_scores(user_id, k, train=False, small=True):
     ratings = ratings.loc[ratings['userId'] == user_id]
 
     movies_ids = get_movies_ids()
-    print('All movies: ', len(movies_ids))
     movies_ids = [movie for movie in movies_ids if len(ratings.loc[ratings['movieId'] == movie]) == 0]
     movies_ids = [movie for movie in movies_ids if movie in ratings['movieId']]
-    print('All movies: ', len(movies_ids))
 
     user_input = [user_id for _ in range(len(movies_ids))]
     _, predictions = predict_score_nn(user_input, movies_ids, trained_model)
