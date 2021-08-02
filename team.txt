@@ -1,0 +1,25 @@
+MIU - CS582 Machine Learning
+August, 2021
+
+Students:
+- Muzammil Husnain (612786)
+- Ivan Krasowski Bissio (612705)
+- Baraa Mousa Nofal (612836)
+- Umair Saeed (612784)
+
+------------------------------------------
+Tasks:
+. All of us (independently, then we chose the better implementation for the models, or a mix of some):
+    - Dataset selection
+    - Dataset: EDA (analysis + coding + visualization)
+    - Demographic Filtering
+    - Content-based Filtering
+    - Collaborative Filtering
+. Muzammil:
+    - Backend
+. Baraa:
+    - Docker and production setup
+. Ivan:
+    - Report
+. Umair:
+    - Frontend
