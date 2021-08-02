@@ -48,6 +48,7 @@ def get_movie_poster_and_trailer(movie, get_trailer=False):
         error_message = "Error TMDB API Key not set. Refer to documentation to add this"
         print(error_message, file=sys.stderr)
         return error_message, 500
+    print(movie)
     movie_id = movie['id']
     if not isinstance(movie_id, int):
         movie_id = movie['id'].iloc[0]
@@ -61,7 +62,7 @@ def get_movie_poster_and_trailer(movie, get_trailer=False):
 
     base_url = config_res["base_url"]
     poster_size = config_res["poster_sizes"][3]
-
+    print(url)
     if res["poster_path"]:
         poster_url = res["poster_path"]
         movie['poster_url'] = base_url + poster_size + poster_url

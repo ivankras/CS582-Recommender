@@ -45,7 +45,15 @@ def rate_movie_for_user(user_id, movie_id):
     """ Route to get predicted rating by user for a particular movie
         params: userId, movieId
         Return: rating of movie """
-    return service.get_rating(user_id, movie_id)
+    return service.get_rating(int(user_id), int(movie_id))
+
+@app.route('/api/rate2/<user_id>/<movie_id>')
+@cross_origin()
+def rate_movie_for_user_svd(user_id, movie_id):
+    """ Route to get predicted rating by user for a particular movie
+        params: userId, movieId
+        Return: rating of movie """
+    return service.get_rating_svd(int(user_id), int(movie_id))
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
