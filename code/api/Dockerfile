@@ -17,7 +17,7 @@ RUN [ "/bin/bash", "-c", "source TMDB_API_KEY" ]
 
 EXPOSE 5000
 
-CMD [ "/bin/bash", "run.sh" ]
+CMD [ "/bin/bash", "run.sh", "-production" ]
 
 #env FLASK_APP src/recommender-api.py
 

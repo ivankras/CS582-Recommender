@@ -39,13 +39,25 @@ def similar_to_movie(movie_id):
         Return: top ten movies similar to <movieId> """
     return service.get_top_10_similar(movie_id)
 
-@app.route('/api/rate/<user_id>/<movie_id>')
+@app.route('/api/rate/<user_id>')
 @cross_origin()
-def rate_movie_for_user(user_id, movie_id):
+def rate_movie_for_user(user_id):
     """ Route to get predicted rating by user for a particular movie
         params: userId, movieId
         Return: rating of movie """
+<<<<<<< Updated upstream:code/api/src/endpoints.py
     return service.get_rating(user_id, movie_id)
+=======
+    return service.get_rating(int(user_id))
+
+@app.route('/api/rate2/<user_id>/<movie_id>')
+@cross_origin()
+def rate_movie_for_user_svd(user_id, movie_id):
+    """ Route to get predicted rating by user for a particular movie
+        params: userId, movieId
+        Return: rating of movie """
+    return service.get_rating_svd(int(user_id), int(movie_id))
+>>>>>>> Stashed changes:api/src/endpoints.py
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
