@@ -1,5 +1,14 @@
 import numpy as np
 from ast import literal_eval
+import pandas as pd
+
+
+def get_movies_dataset():
+    return pd.read_csv("../../dataset/TMDB 5000 Movie Dataset/tmdb_5000_movies.csv")
+
+
+def get_credits_dataset():
+    return pd.read_csv("../../dataset/TMDB 5000 Movie Dataset/tmdb_5000_credits.csv")
 
 
 def missing_counts_by_cols(data):
@@ -79,4 +88,12 @@ def clean_data(x):
 
 
 def create_soup(x):
-    return ' '.join(x['keywords']) + ' ' + ' '.join(x['cast']) + ' '.join(x['director']) + ' ' + ' '.join(x['genres']) #+  ' '.join(x['overview'])
+    return ' '.join(x['keywords']) + ' ' + ' '.join(x['cast']) + ' '.join(x['director']) + ' ' + ' '.join(
+        x['genres'])  # + ' '.join(x['overview'])
+
+
+tmdb_movies_data = get_movies_dataset()
+tmdb_credits_data = get_credits_dataset()
+
+tmdb_credits_data.columns = ['id','tittle','cast','crew']
+tmdb_merged_data = tmdb_movies_data.merge(tmdb_credits_data, on="id")
