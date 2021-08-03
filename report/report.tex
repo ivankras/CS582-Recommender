@@ -22,22 +22,22 @@
 \end{abstract}
 
 \section{About the Dataset}
-% The chosen dataset collects information about \href{https://www.kaggle.com/binaryjoker/airline-passenger-satisfaction/download}{Airline Passenger Satisfaction}.
-% We opted for this dataset because it had a lot of entries (almost 130000), many columns (including 4 categorical) and it was oriented to a binary classification problem ('satisfied' vs. 'neutral or dissatisfied').
+The chosen dataset is a mix of two web-available datasets:
+\href{https://www.kaggle.com/rounakbanik/the-movies-dataset}{The Movies Dataset}
+and \href{https://www.kaggle.com/tmdb/tmdb-movie-metadata}{TMDb 5000 Movie Dataset}.
+We opted for these datasets because they give us enough movies with representative information, including ratings from users,
+which allows us to develop the three kinds of recommenders we are trying to build.
 
 \subsection{EDA: Exploratory Data Analysis}
 \input{sections/dataset/eda.tex}
 
-\subsection{Data Preparation}
-\input{sections/dataset/data_prep.tex}
-
-\section{Trending Now}
+\section{\emph{Trending Now}: Demographic Filtering}
 \input{sections/ml/1_trending.tex}
 
-\section{Because you watched}
+\section{\emph{Because you watched}: Content-based Filtering}
 \input{sections/ml/2_because_you_watched.tex}
 
-\section{Because of you}
+\section{\emph{Because of you}: Collaborative Filtering}
 \input{sections/ml/3_because_of_you.tex}
 
 \section{In Production}
@@ -47,7 +47,7 @@
 \input{sections/production/docker.tex}
 \subsection{UI}
 \input{sections/production/ui.tex}
-
+\clearpage
 \section{Conclusion}
 \input{conclusion.tex}
 
