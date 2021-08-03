@@ -33,6 +33,7 @@ def get_trending_movies():
     # Clean columns for result
     movies = get_top_k_movies(10)
     movies = append_imdb_id_to_df(movies)
+    movies = format_data_objects(movies)
     movies = movies.apply(get_movie_poster_and_trailer, axis=1, get_trailer=True)
     
     return movies.to_json(orient='records')
@@ -45,9 +46,10 @@ def get_top_10_similar(movie_id, use_overview_for_similarity=False):
     movie.append(int(movie_id))
     movie = get_movies_from_ids(movie)
     title = str(movie['title'].item())
-    print(get_movie_id_by_title(movie_df, "The Dark Knight Rises"))
-    print(title)
+    # print(get_movie_id_by_title(movie_df, "The Dark Knight Rises"))
+    # print(title)
     top_ten_similar = get_k_recommendations_based_on_soup(title , 10).tolist()
+    print(top_ten_similar)
     top_ten_ids = top_ten_similar, get_movie_id_by_title
     top_ten_similar = format_data_objects(get_movies_from_ids(top_ten_ids))
     #print(top_ten_similar) # get_movies_from_ids(list(top_ten_similar.apply(get_movie_id_by_title, axis=1))))
