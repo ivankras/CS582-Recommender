@@ -33,10 +33,11 @@ def get_movie_imdb_id(title, get_object=False):
     imdb_id = res["imdbID"] if "imdbID" in res else "not_found"
     return imdb_id
 
-def get_movie_id_by_title(title):
+def get_movie_id_by_title(df, title):
     """
     Get the id for a movie title
     """
+    movie_df = df
     return str(movie_df.loc[movie_df['title'] == title]['id'].iloc[0])
 
 
@@ -63,9 +64,9 @@ def get_movie_poster_and_trailer(movie, get_trailer=False):
     poster_size = config_res["poster_sizes"][3]
     if res["poster_path"]:
         poster_url = res["poster_path"]
-        movie['poster_url'] = base_url + poster_size + poster_url
+        movie['Poster'] = base_url + poster_size + poster_url
     else:
-        movie['poster_url'] = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
+        movie['Poster'] = "https://i.imgur.com/8clFw0e.jpeg"
 
     if get_trailer:
         trailer_url_id = {}
@@ -76,9 +77,9 @@ def get_movie_poster_and_trailer(movie, get_trailer=False):
 
         if trailer_url_id and trailer_url_id["site"] == "YouTube":
             #movie["trailer_url"] = "https://www.youtube.com/watch?v=%s" % trailer_url_id["key"]
-            movie["trailer_url"] = "https://www.youtube.com/embed/%s?autoplay=1" % trailer_url_id["key"]
+            movie["trailerID"] = "https://www.youtube.com/embed/%s?autoplay=1" % trailer_url_id["key"]
         else:
-            movie["trailer_url"] = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" #not found
+            movie["trailerID"] = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" #not found
 
     return movie
 
@@ -92,7 +93,7 @@ def format_data_objects(dataframe):
 
 def append_imdb_id_to_df(dataframe):
     for index, row in dataframe.iterrows():
-        dataframe.at[index, 'imdb_id'] = get_movie_imdb_id(row['title'])
+        dataframe.at[index, 'imdbID'] = get_movie_imdb_id(row['title'])
     return dataframe
 
 
