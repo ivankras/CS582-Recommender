@@ -1,0 +1,5 @@
+We choose to expose our developed recommenders using a RESTful API on a web service.
+This allows our system to obtain recommendations (all demographic, content-based and collaborative) by sending a request to specific URLs.\\
+Here is the part where caching results and serializing the models becomes crucial, given that we want to achieve a quick response time for each request.\\
+Since our system has been developed with Python tools, and the language provides good tools (with a broad community) for web development, it seems evident to use it for this services.
+We rely on Flask\footnote{\href{https://flask.palletsprojects.com/en/2.0.x/}{https://flask.palletsprojects.com/en/2.0.x/}} library for the task.

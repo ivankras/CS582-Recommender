@@ -9,7 +9,7 @@ Designing the Neural Network would take much research and experimenting; given o
 (Wittenauer, 2019\footnote{\href{https://medium.com/@jdwittenauer/deep-learning-with-keras-recommender-systems-e7b99cb29929}{https://medium.com/@jdwittenauer/deep-learning-with-keras-recommender-systems-e7b99cb29929}}).
 It involves a sequence of layers and dropouts, following the pattern:
 \begin{center}
-    \emph{Dropout (5\%) - 10 Fully Connected (FC) Neurons with ReLU activation - Dropout (10\%) - 1 FC Neuron with sigmoid activation - Scaling to prediction range (1-5) => result}\\
+    \emph{Dropout (5\%) - 10 Fully Connected (FC) Neurons with ReLU activation - Dropout (10\%) - 1 FC Neuron with sigmoid activation - Scaling to prediction range (1-5) = result}\\
 \end{center}
 \begin{center}
     \captionsetup{type=figure}
@@ -49,7 +49,7 @@ and from now on we don't need to generate it anymore, but just deserialize it an
 Predicting scores involves sending the users and movies lists to the model, and waiting for its answer.
 
 \subsubsection*{Get Top Predictions}
-From the nature of the Neural Collaborative Filter, all movies can be sent to the model to get a list of predictions for the same user (sending the user once per movie).//
+From the nature of the Neural Collaborative Filter, all movies can be sent to the model to get a list of predictions for the same user (sending the user once per movie).\\
 Finally, we are able to use this list, order it by prediction value (descending) and take the best 10 movies as our final result.
 \begin{center}
     \captionsetup{type=figure}
