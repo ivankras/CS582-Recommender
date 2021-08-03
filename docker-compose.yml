@@ -1,24 +1,15 @@
 version: '3'
+
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: api/Dockerfile
-    container_name: sanderflix-api
-    image: sanderflix-api
-    hostname: api.sannderflix.com
-    restart: always
-    ports:
-    - 5000:5000
-  web:
-    build:
-      context: .
-      dockerfile: web/Dockerfile
-    container_name: sanderflix
-    image: sanderflix-image
-    depends_on:
-      - backend
-    hostname: web.sannderflix.com
-    restart: always
-    ports:
-      - 8080:8080
+   api:
+     build: ./api
+     volumes:
+       - ./api:/usr/src/app
+     ports:
+      - 5000:5000
+   client:
+      build: ./web
+      volumes:
+        - ./client:/usr/src/app
+      ports:
+        - 3000:3000

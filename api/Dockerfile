@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt .
 RUN apt-get update && apt-get install -y apt-utils && apt-get install -y gfortran libopenblas-dev liblapack-dev
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --no-binary --no-build-isolation -r requirements.txt
 
 COPY src ./src
 COPY input ./input
@@ -17,7 +17,7 @@ RUN [ "/bin/bash", "-c", "source TMDB_API_KEY" ]
 
 EXPOSE 5000
 
-CMD [ "/bin/bash", "run.sh", "-production" ]
+CMD [ "/bin/bash", "run.sh" ]
 
 #env FLASK_APP src/recommender-api.py
 
