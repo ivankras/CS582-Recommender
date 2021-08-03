@@ -66,11 +66,10 @@ def get_rating(user_id):
     prediction = get_top_scores(user_id, 10)
     #_, prediction = predict_score_nn(user_id, movie_id , trained_model=_get_predictor_nn(False, True)[1])
     moviel = [x[0] for x in prediction]
-    print(moviel)
     movie = format_data_objects(get_movies_from_ids(moviel))
     #movie['predicted_rating'] = (prediction[0])[1]
-    movies = get_movie_poster_and_trailer(movie, True)
-    return append_imdb_id_to_df(movie).to_json(orient='records')
+    movies = movie.apply(get_movie_poster_and_trailer, axis=1, get_trailer=True)
+    return append_imdb_id_to_df(movies).to_json(orient='records')
 
 def get_rating_svd(user_id, movie_id):
     """
