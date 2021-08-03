@@ -6,6 +6,8 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024 
+app.config['FILE_UPLOAD_MAX_MEMORY_SIZE'] = 50 * 1024 * 1024
 
 @app.route('/login')
 @cross_origin()
