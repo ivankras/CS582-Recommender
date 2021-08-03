@@ -89,6 +89,12 @@ def get_rating_svd(user_id, movie_id):
     return append_imdb_id_to_df(movie).to_json(orient='records')
 
 
+def get_movie_by_id(movie_id):
+    mids = []
+    mids.append(int(movie_id))
+    movie = format_data_objects(get_movies_from_ids(mids))
+    movie = get_movie_poster_and_trailer(movie, True)
+    return append_imdb_id_to_df(movie).to_json(orient='records')
     
 if __name__ == "__main__":
     print(get_rating(12, 862))

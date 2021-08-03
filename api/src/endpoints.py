@@ -55,6 +55,13 @@ def rate_movie_for_user_svd(user_id, movie_id):
         Return: rating of movie """
     return service.get_rating_svd(int(user_id), int(movie_id))
 
+@app.route('/api/movie/<movie_id>')
+@cross_origin()
+def fetch_movie_by_id(movie_id):
+    """ Get movie details by movie id
+    """
+    return service.get_movie_by_id(movie_id)
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
