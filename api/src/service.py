@@ -59,8 +59,7 @@ def get_top_10_similar(movie_id, use_overview_for_similarity=False):
 
 def get_rating(user_id):
     """
-    Docstring
-    This method will compute a predicted rating given a user
+    Get top 10 most highly rated movies based on user's watch history
     Uses the pre-trained neural network
     """
     prediction = get_top_scores(user_id, 10)
@@ -71,21 +70,17 @@ def get_rating(user_id):
     movies = movie.apply(get_movie_poster_and_trailer, axis=1, get_trailer=True)
     return append_imdb_id_to_df(movies).to_json(orient='records')
 
-def get_rating_svd(user_id, movie_id):
+def get_rating_svd(user_id):
     """
-    Docstring
-    This method will compute a predicted rating given a user
+    Get top 10 most highly rated movies based on user's watch history
     Uses the SVD model
     """
-    prediction = SVD_MODEL.predict(user_id, movie_id)
-    #_, prediction = predict_score_nn(user_id, movie_id , trained_model=_get_predictor_nn(False, True)[1])
-    moviel = []
-    moviel.append(int(movie_id))
+    prediction = get_top_k_predictions(get_all_predictions_svd(user_id), 10)
+    print(prediction[0][0])
+    moviel = [x[1] for x in prediction]
     movie = format_data_objects(get_movies_from_ids(moviel))
-    movie['predicted_rating'] = prediction.est
-    movie = get_movie_poster_and_trailer(movie, True)
-    return append_imdb_id_to_df(movie).to_json(orient='records')
-
+    movies = movie.apply(get_movie_poster_and_trailer, axis=1, get_trailer=True)
+    return append_imdb_id_to_df(movies).to_json(orient='records')
 
 def get_movie_by_id(movie_id):
     mids = []
@@ -96,4 +91,3 @@ def get_movie_by_id(movie_id):
     
 if __name__ == "__main__":
     print(get_rating(12, 862))
-    #print(get_trending_movies() + " | " + get_top_10_similar(12) + " | " + get_rating(12, 12))
