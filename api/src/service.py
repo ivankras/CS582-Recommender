@@ -33,7 +33,7 @@ def get_trending_movies():
     # Clean columns for result
     movies = get_top_k_movies(10)
     movies = append_imdb_id_to_df(movies)
-    movies = get_movie_poster_and_trailer(movies, True)
+    movies = movies.apply(get_movie_poster_and_trailer, axis=1, get_trailer=True)
     
     return movies.to_json(orient='records')
 
