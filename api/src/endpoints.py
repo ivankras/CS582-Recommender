@@ -47,13 +47,13 @@ def rate_movie_for_user(user_id):
         Return: rating of movie """
     return service.get_rating(int(user_id))
 
-@app.route('/api/rate2/<user_id>/<movie_id>')
+@app.route('/api/rate2/<user_id>')
 @cross_origin()
-def rate_movie_for_user_svd(user_id, movie_id):
+def rate_movie_for_user_svd(user_id):
     """ Route to get predicted rating by user for a particular movie
         params: userId, movieId
         Return: rating of movie """
-    return service.get_rating_svd(int(user_id), int(movie_id))
+    return service.get_rating_svd(int(user_id))
 
 @app.route('/api/movie/<movie_id>')
 @cross_origin()
